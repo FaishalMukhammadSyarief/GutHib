@@ -2,10 +2,15 @@ package com.zhalz.guthib.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
-import com.zhalz.guthib.data.User
+import com.zhalz.guthib.data.response.UserResponse
+import com.zhalz.guthib.data.retrofit.ApiConfig
 import com.zhalz.guthib.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
-        setRv()
+        getUser()
 
     }
 
@@ -35,17 +40,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setRv() {
-        val list = listOf(
-            User("faishal", 2, R.drawable.ic_github),
-            User("faishal", 2, R.drawable.ic_github),
-            User("faishal", 2, R.drawable.ic_github)
-        )
+    private fun getUser() {
+        val client = ApiConfig.getApiService().searchUser()
+        client.enqueue(object : Callback<UserResponse> {
 
-        val adapter = UserAdapter()
-        adapter.submitList(list)
-        binding.rvUser.adapter = adapter
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if (response.isSuccessful) {
+                    val userData = response.body()?.items
+
+                    val adapter = UserAdapter()
+                    adapter.submitList(userData)
+                    binding.rvUser.adapter = adapter
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "gagal bro", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
-
 
 }

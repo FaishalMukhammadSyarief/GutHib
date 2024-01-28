@@ -5,29 +5,33 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.zhalz.guthib.data.User
+import com.bumptech.glide.Glide
+import com.zhalz.guthib.data.response.UserData
+import com.zhalz.guthib.data.response.UserResponse
 import com.zhalz.guthib.databinding.ItemUserBinding
 
-class UserAdapter : ListAdapter<User, UserAdapter.UserViewHolder>(DIFF_CALLBACK) {
+class UserAdapter : ListAdapter<UserData, UserAdapter.UserViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.binding.tvName.text = getItem(position).name
-        holder.binding.tvFollowers.text = getItem(position).follower.toString()
-        holder.binding.ivPhoto.setImageResource(getItem(position).photo)
+        holder.binding.tvName.text = getItem(position).login
+        holder.binding.tvFollowers.text = getItem(position).followersUrl
+        Glide.with(holder.itemView.context)
+            .load(getItem(position).avatarUrl)
+            .into(holder.binding.ivPhoto)
     }
 
     inner class UserViewHolder(var binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserData>() {
+            override fun areItemsTheSame(oldItem: UserData, newItem: UserData): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            override fun areContentsTheSame(oldItem: UserData, newItem: UserData): Boolean {
                 return oldItem == newItem
             }
         }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="vantablack">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="vantawhite">#FFFFFFFF</color>
 
     <color name="black">#1B1C1E</color>
+    <color name="white">#fff7fe</color>
     <color name="grey">#cac5d1</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>

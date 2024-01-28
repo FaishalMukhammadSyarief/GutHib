@@ -1,7 +1,8 @@
-package com.zhalz.guthib
+package com.zhalz.guthib.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.User
 import com.zhalz.guthib.databinding.ActivityMainBinding

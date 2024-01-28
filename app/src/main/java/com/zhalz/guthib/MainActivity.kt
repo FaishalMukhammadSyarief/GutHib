@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity() {
             User("faishal", 2, R.drawable.ic_github)
         )
 
-        binding.rvUser.adapter = UserAdapter(list)
+        val adapter = UserAdapter()
+        adapter.submitList(list)
+        binding.rvUser.adapter = adapter
     }
 
 

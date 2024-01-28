@@ -15,34 +15,32 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/menu_home"
+            android:paddingEnd="5dp"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
+            app:menu="@menu/menu_home"
             app:title="@string/app_name"
-            app:titleTextAppearance="@style/ToolbarTitle" >
-
-        </com.google.android.material.appbar.MaterialToolbar>
+            app:titleTextAppearance="@style/ToolbarTitle"
+            tools:ignore="RtlSymmetry" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_user" />
 
     <com.google.android.material.search.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/hint_search"
-        app:backgroundTint="@color/white"
-        app:layout_anchor="@id/search_bar">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/item_user" />
-
-    </com.google.android.material.search.SearchView>
+        app:layout_anchor="@id/search_bar"
+        app:backgroundTint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

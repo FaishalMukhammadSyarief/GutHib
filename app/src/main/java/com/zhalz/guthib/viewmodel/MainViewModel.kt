@@ -15,11 +15,9 @@ class MainViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
 
-    init { getUser() }
+    fun getUser(query: String) {
 
-    private fun getUser() {
-
-        val client = ApiConfig.getApiService().searchUser()
+        val client = ApiConfig.getApiService().searchUser(query)
         client.enqueue(object : Callback<UserResponse> {
 
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {

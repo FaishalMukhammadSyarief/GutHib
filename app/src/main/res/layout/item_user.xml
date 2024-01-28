@@ -42,30 +42,6 @@
                 android:textStyle="bold"
                 tools:text="Faishal Mukhammad Syarief" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_followers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="14sp"
-                    android:gravity="center_vertical"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/tv_follow"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="14sp"
-                    android:gravity="center_vertical"
-                    android:text=" Followers"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

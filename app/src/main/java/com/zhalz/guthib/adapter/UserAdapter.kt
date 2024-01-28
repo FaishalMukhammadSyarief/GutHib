@@ -17,8 +17,8 @@ class UserAdapter : ListAdapter<UserData, UserAdapter.UserViewHolder>(DIFF_CALLB
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.binding.tvName.text = getItem(position).login
-        holder.binding.tvFollowers.text = getItem(position).followersUrl
-        Glide.with(holder.itemView.context)
+        Glide
+            .with(holder.itemView.context)
             .load(getItem(position).avatarUrl)
             .into(holder.binding.ivPhoto)
     }

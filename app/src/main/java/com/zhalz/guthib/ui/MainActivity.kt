@@ -1,8 +1,8 @@
 package com.zhalz.guthib.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+        getUser()
 
     }
 
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.search_bar -> {
                     binding.searchView.show()
-                    getUser()
                 }
             }
             true
@@ -40,6 +40,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
+
+        binding.searchView
+            .editText
+            .setOnEditorActionListener { _, _, _ ->
+                val query = binding.searchView.text.toString()
+                viewModel.getUser(query)
+                binding.searchView.hide()
+                true
+            }
+
         viewModel.listUser.observe(this) {
             setQueryResult(it)
         }

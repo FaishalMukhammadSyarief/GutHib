@@ -1,5 +1,6 @@
-package com.zhalz.guthib.ui
+package com.zhalz.guthib.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,7 @@ import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
-import com.zhalz.guthib.viewmodel.MainViewModel
+import com.zhalz.guthib.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         initUI()
         getUser()
+        startActivity(Intent(this, DetailActivity::class.java))
+
 
     }
 

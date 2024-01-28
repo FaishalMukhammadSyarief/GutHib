@@ -1,4 +1,4 @@
-package com.zhalz.guthib.viewmodel
+package com.zhalz.guthib.ui.main
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

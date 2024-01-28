@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.search_bar -> {
                     binding.searchView.show()
-                    getUserData()
+                    getUser()
                 }
             }
             true
@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getUserData() {
+    private fun getUser() {
         viewModel.listUser.observe(this) {
-            setUserData(it)
+            setQueryResult(it)
         }
     }
 
-    private fun setUserData(userList: List<UserData?>?) {
+    private fun setQueryResult(userList: List<UserData?>?) {
         val adapter = UserAdapter()
         adapter.submitList(userList)
         binding.rvUser.adapter = adapter

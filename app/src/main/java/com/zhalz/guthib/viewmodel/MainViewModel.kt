@@ -15,9 +15,9 @@ class MainViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
 
-    init { getUserList() }
+    init { getUser() }
 
-    private fun getUserList() {
+    private fun getUser() {
 
         val client = ApiConfig.getApiService().searchUser()
         client.enqueue(object : Callback<UserResponse> {

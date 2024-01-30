@@ -21,11 +21,11 @@ class FollowersViewModel: ViewModel() {
 
             override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
                 if (response.isSuccessful) _listFollowers.value = response.body()
-                else Log.e("MainViewModel", "onFailure: ${response.message()}")
+                else Log.e("FollowersViewModel", "onFailure: ${response.message()}")
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-                Log.e("MainViewModel", "onFailure: ${t.message.toString()}")
+                Log.e("FollowersViewModel", "onFailure: ${t.message.toString()}")
             }
 
         })

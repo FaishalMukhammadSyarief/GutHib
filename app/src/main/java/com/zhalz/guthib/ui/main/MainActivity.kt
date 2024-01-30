@@ -24,11 +24,13 @@ class MainActivity : AppCompatActivity() {
 
         initUI()
         getUser()
+        viewModel.listUser.observe(this) { setRecycler(it) }
 
     }
 
     private fun initUI() {
 
+        /* === TOOLBAR MENU CLICK === */
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.search_bar -> {
@@ -50,10 +52,6 @@ class MainActivity : AppCompatActivity() {
                 binding.searchView.hide()
                 true
             }
-
-        viewModel.listUser.observe(this) {
-            setRecycler(it)
-        }
     }
 
     private fun setRecycler(userList: List<UserData?>?) {

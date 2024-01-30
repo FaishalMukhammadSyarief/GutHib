@@ -23,15 +23,15 @@ class FollowersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFollowersBinding.inflate(layoutInflater, container, false)
 
-        setData()
+        getFollowers()
+        viewModel.listFollowers.observe(viewLifecycleOwner) { setRecycler(it) }
 
         return binding.root
     }
 
-    private fun setData() {
+    private fun getFollowers() {
 
         @Suppress("DEPRECATION")
         val userData =
@@ -39,9 +39,6 @@ class FollowersFragment : Fragment() {
             else activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER)
 
         userData?.login?.let { viewModel.getFollowers(it) }
-
-        viewModel.listFollowers.observe(viewLifecycleOwner) { setRecycler(it) }
-
     }
 
     private fun setRecycler(userList: List<UserData?>?) {
@@ -53,7 +50,6 @@ class FollowersFragment : Fragment() {
     private fun toDetail(data: UserData) {
         val toDetail = Intent(requireActivity(), DetailActivity::class.java)
             .putExtra(DetailActivity.EXTRA_USER, data)
-
         startActivity(toDetail)
     }
 

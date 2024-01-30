@@ -18,25 +18,30 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setPager()
-        setData()
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        initUI()
+        getDetailUser()
 
     }
 
-    private fun setPager() {
-        binding.viewPager.adapter = PagerAdapter(this)
+    private fun initUI() {
 
+        /* === VIEW PAGER === */
+        binding.viewPager.adapter = PagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.followers)
                 1 -> tab.text = getString(R.string.following)
             }
         } .attach()
+
+        /* === TOOLBAR NAV CLICK === */
+        binding.toolbar.setNavigationOnClickListener { finish() }
+
     }
 
-    private fun setData() {
+    private fun getDetailUser() {
 
+        /* === GET DATA === */
         @Suppress("DEPRECATION")
         val userData =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
@@ -45,6 +50,7 @@ class DetailActivity : AppCompatActivity() {
         val name = userData?.login
         val image = userData?.avatarUrl
 
+        /* === SET DATA === */
         binding.collapsingToolbar.title = name
         Glide
             .with(this)

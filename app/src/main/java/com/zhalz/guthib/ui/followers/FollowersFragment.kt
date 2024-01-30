@@ -1,6 +1,7 @@
 package com.zhalz.guthib.ui.followers
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,18 +26,21 @@ class FollowersFragment : Fragment() {
 
         _binding = FragmentFollowersBinding.inflate(layoutInflater, container, false)
 
-        getData()
+        setData()
 
         return binding.root
     }
 
-    private fun getData() {
-        viewModel.apply {
-            getFollowers("FaishalMukhammadSyarief")
-            listFollowers.observe(viewLifecycleOwner) {
-                setRecycler(it)
-            }
-        }
+    private fun setData() {
+
+        @Suppress("DEPRECATION")
+        val userData =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER, UserData::class.java)
+            else activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER)
+
+        userData?.login?.let { viewModel.getFollowers(it) }
+
+        viewModel.listFollowers.observe(viewLifecycleOwner) { setRecycler(it) }
 
     }
 
@@ -47,10 +51,9 @@ class FollowersFragment : Fragment() {
     }
 
     private fun toDetail(data: UserData) {
-        val toDetail = Intent(requireActivity(), DetailActivity::class.java).apply {
-            putExtra("name", data.login)
-            putExtra("image", data.avatarUrl)
-        }
+        val toDetail = Intent(requireActivity(), DetailActivity::class.java)
+            .putExtra(DetailActivity.EXTRA_USER, data)
+
         startActivity(toDetail)
     }
 

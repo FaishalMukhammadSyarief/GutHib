@@ -1,11 +1,13 @@
 package com.zhalz.guthib.ui.detail
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
+import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -17,7 +19,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setPager()
-        getData()
+        setData()
         binding.toolbar.setNavigationOnClickListener { finish() }
 
     }
@@ -33,16 +35,25 @@ class DetailActivity : AppCompatActivity() {
         } .attach()
     }
 
-    private fun getData() {
+    private fun setData() {
 
-        val name = intent.getStringExtra("name")
-        val image = intent.getStringExtra("image")
+        @Suppress("DEPRECATION")
+        val userData =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
+            else intent.getParcelableExtra(EXTRA_USER)
+
+        val name = userData?.login
+        val image = userData?.avatarUrl
 
         binding.collapsingToolbar.title = name
         Glide
             .with(this)
             .load(image)
             .into(binding.ivImage)
+    }
+
+    companion object {
+        const val EXTRA_USER = "extra_user"
     }
 
 }

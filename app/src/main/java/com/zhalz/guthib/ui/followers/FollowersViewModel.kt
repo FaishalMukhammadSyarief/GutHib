@@ -15,17 +15,17 @@ class FollowersViewModel: ViewModel() {
     private val _listFollowers = MutableLiveData<List<UserData?>?>()
     val  listFollowers = _listFollowers
 
-    fun getFollowers(linkFollowers: String) {
+    fun getFollowers(username: String) {
 
-        val client = ApiConfig.getApiService().getFollowers(linkFollowers)
-        client.enqueue(object: Callback<UserResponse> {
+        val client = ApiConfig.getApiService().getFollowers(username)
+        client.enqueue(object: Callback<List<UserData>> {
 
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful) _listFollowers.value = response.body()?.items
+            override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
+                if (response.isSuccessful) _listFollowers.value = response.body()
                 else Log.e("MainViewModel", "onFailure: ${response.message()}")
             }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message.toString()}")
             }
 

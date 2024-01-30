@@ -35,20 +35,13 @@ class FollowersFragment : Fragment() {
     }
 
     private fun getData() {
-
-        val user =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            activity?.intent?.getParcelableExtra(EXTRA_USER, UserData::class.java)
-        } else activity?.intent?.getParcelableExtra(EXTRA_USER)
-
-        val followersUrl = user?.followersUrl
-
-        if (followersUrl != null) viewModel.getFollowers(followersUrl)
-        else Toast.makeText(requireContext(), "Macopat", Toast.LENGTH_SHORT).show()
-
-        viewModel.listFollowers.observe(viewLifecycleOwner) {
-            setRecycler(it)
+        viewModel.apply {
+            getFollowers("FaishalMukhammadSyarief")
+            listFollowers.observe(viewLifecycleOwner) {
+                setRecycler(it)
+            }
         }
+
     }
 
     private fun setRecycler(userList: List<UserData?>?) {
@@ -68,10 +61,6 @@ class FollowersFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        const val EXTRA_USER = "extra_user"
     }
 
 }

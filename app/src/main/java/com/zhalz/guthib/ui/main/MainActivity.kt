@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         val toDetail = Intent(this, DetailActivity::class.java).apply {
             putExtra("name", data.login)
             putExtra("image", data.avatarUrl)
-            putExtra("followersUrl", data.followersUrl)
         }
         startActivity(toDetail)
     }

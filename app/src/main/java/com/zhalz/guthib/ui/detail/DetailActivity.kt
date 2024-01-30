@@ -15,6 +15,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setPager()
+        binding.toolbar.setNavigationOnClickListener { finish() }
+
+    }
+
+    private fun setPager() {
         binding.viewPager.adapter = PagerAdapter(this)
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
@@ -24,4 +30,5 @@ class DetailActivity : AppCompatActivity() {
             }
         } .attach()
     }
+
 }

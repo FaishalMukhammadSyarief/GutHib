@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zhalz.guthib.data.response.UserData
-import com.zhalz.guthib.data.response.UserResponse
 import com.zhalz.guthib.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback

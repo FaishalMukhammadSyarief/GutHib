@@ -1,20 +1,16 @@
 package com.zhalz.guthib.ui.followers
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.FragmentFollowersBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
-import com.zhalz.guthib.ui.main.MainViewModel
 
 class FollowersFragment : Fragment() {
 

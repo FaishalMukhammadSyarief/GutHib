@@ -52,11 +52,11 @@ class MainActivity : AppCompatActivity() {
             }
 
         viewModel.listUser.observe(this) {
-            setQueryResult(it)
+            setRecycler(it)
         }
     }
 
-    private fun setQueryResult(userList: List<UserData?>?) {
+    private fun setRecycler(userList: List<UserData?>?) {
         val adapter = UserAdapter{ toDetail(it) }
         adapter.submitList(userList)
         binding.rvUser.adapter = adapter
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         val toDetail = Intent(this, DetailActivity::class.java).apply {
             putExtra("name", data.login)
             putExtra("image", data.avatarUrl)
+            putExtra("followersUrl", data.followersUrl)
         }
         startActivity(toDetail)
     }

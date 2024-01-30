@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         initUI()
         getUser()
-        startActivity(Intent(this, DetailActivity::class.java))
-
 
     }
 
@@ -59,9 +57,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setQueryResult(userList: List<UserData?>?) {
-        val adapter = UserAdapter()
+        val adapter = UserAdapter{ toDetail(it) }
         adapter.submitList(userList)
         binding.rvUser.adapter = adapter
+    }
+
+    private fun toDetail(data: UserData) {
+        val toDetail = Intent(this, DetailActivity::class.java).apply {
+            putExtra("name", data.login)
+            putExtra("image", data.avatarUrl)
+        }
+        startActivity(toDetail)
     }
 
 }

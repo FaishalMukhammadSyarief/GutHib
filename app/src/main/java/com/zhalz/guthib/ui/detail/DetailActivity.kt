@@ -2,6 +2,7 @@ package com.zhalz.guthib.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
@@ -16,6 +17,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setPager()
+        getData()
         binding.toolbar.setNavigationOnClickListener { finish() }
 
     }
@@ -29,6 +31,18 @@ class DetailActivity : AppCompatActivity() {
                 1 -> tab.text = getString(R.string.following)
             }
         } .attach()
+    }
+
+    private fun getData() {
+
+        val name = intent.getStringExtra("name")
+        val image = intent.getStringExtra("image")
+
+        binding.collapsingToolbar.title = name
+        Glide
+            .with(this)
+            .load(image)
+            .into(binding.ivImage)
     }
 
 }

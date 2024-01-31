@@ -34,11 +34,11 @@ class FollowersFragment : Fragment() {
     private fun getFollowers() {
 
         @Suppress("DEPRECATION")
-        val userData =
+        val followersData =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER, UserData::class.java)
             else activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER)
 
-        userData?.login?.let { viewModel.getFollowers(it) }
+        followersData?.login?.let { viewModel.getFollowers(it) }
     }
 
     private fun setRecycler(userList: List<UserData?>?) {

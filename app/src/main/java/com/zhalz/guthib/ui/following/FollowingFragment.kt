@@ -32,8 +32,9 @@ class FollowingFragment : Fragment() {
         return binding.root
     }
 
-    fun getFollowing() {
+    private fun getFollowing() {
 
+        @Suppress("DEPRECATION")
         val followingData =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER, UserData::class.java)
             else activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER)

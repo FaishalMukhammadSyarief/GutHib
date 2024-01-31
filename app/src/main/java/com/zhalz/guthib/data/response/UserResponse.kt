@@ -26,7 +26,4 @@ data class UserData(
     @field:SerializedName("repos_url")
     val reposUrl: String? = null,
 
-    @field:SerializedName("url")
-    val url: String? = null
-
-) : Parcelable
+): Parcelable

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        /* === LOADING === */
+        viewModel.isLoading.observe(this) { binding.lottieLoading.isVisible = it }
 
     }
 

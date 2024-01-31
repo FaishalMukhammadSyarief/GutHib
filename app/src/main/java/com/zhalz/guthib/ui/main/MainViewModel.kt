@@ -14,19 +14,26 @@ class MainViewModel : ViewModel() {
 
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
+    val isLoading = MutableLiveData<Boolean>()
 
     fun getUser(query: String) {
+
+        isLoading.value = true
 
         val client = ApiConfig.getApiService().searchUser(query)
         client.enqueue(object : Callback<UserResponse> {
 
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful) _listUser.value = response.body()?.items
+                if (response.isSuccessful) {
+                    _listUser.value = response.body()?.items
+                    isLoading.value = false
+                }
                 else Log.e("MainViewModel", "onFailure: ${response.message()}")
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message.toString()}")
+                isLoading.value = false
             }
 
         })

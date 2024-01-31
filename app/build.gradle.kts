@@ -63,4 +63,7 @@ dependencies {
     /*  ==  VIEW PAGER II  ==  */
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
+    /*  ==  LOTTIE  ==  */
+    implementation ("com.airbnb.android:lottie:6.3.0")
+
 }

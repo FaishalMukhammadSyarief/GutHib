@@ -11,7 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
-import com.zhalz.guthib.databinding.FragmentFollowersBinding
 import com.zhalz.guthib.databinding.FragmentFollowingBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
 

@@ -3,6 +3,7 @@ package com.zhalz.guthib.ui.detail
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
@@ -13,6 +14,7 @@ import com.zhalz.guthib.databinding.ActivityDetailBinding
 class DetailActivity : AppCompatActivity() {
 
     private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,15 @@ class DetailActivity : AppCompatActivity() {
         val name = userData?.login
         val image = userData?.avatarUrl
 
+        name?.let { viewModel.getDetailUser(it) }
+
         /* === SET DATA === */
+
+        viewModel.userData.observe(this) { detailUser ->
+            detailUser.name.let { binding.tvName.text = it }
+            detailUser.bio.let { binding.tvBio.text = it }
+        }
+
         binding.collapsingToolbar.title = name
         Glide
             .with(this)

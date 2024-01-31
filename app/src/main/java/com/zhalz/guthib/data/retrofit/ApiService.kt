@@ -1,5 +1,6 @@
 package com.zhalz.guthib.data.retrofit
 
+import com.zhalz.guthib.data.response.DetailUser
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.data.response.UserResponse
 import retrofit2.Call
@@ -13,6 +14,10 @@ interface ApiService {
     @GET("search/users")
     @Headers("Authorization: token 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")
     fun searchUser( @Query(value = "q") query: String) : Call<UserResponse>
+
+    @GET("users/{username}")
+    @Headers("Authorization: token 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")
+    fun getDetail( @Path("username") username: String ) : Call<DetailUser>
 
     @GET("users/{username}/followers")
     @Headers("Authorization: token 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")

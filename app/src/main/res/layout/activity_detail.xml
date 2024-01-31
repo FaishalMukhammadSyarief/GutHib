@@ -38,9 +38,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/black"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
-                    android:background="@color/black" />
+                    android:scaleType="centerCrop" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_image"
@@ -61,6 +61,30 @@
                     app:strokeColor="@color/white"
                     app:strokeWidth="3dp" />
 
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center|bottom"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="ZhalZ" />
+
+                <TextView
+                    android:id="@+id/tv_bio"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:gravity="center"
+                    android:justificationMode="inter_word"
+                    tools:text="Voyage through the sea of code."
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,7 +94,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:menu="@menu/menu_detail"
-                app:navigationIcon="@drawable/ic_back" />
+                app:navigationIcon="@drawable/ic_back"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

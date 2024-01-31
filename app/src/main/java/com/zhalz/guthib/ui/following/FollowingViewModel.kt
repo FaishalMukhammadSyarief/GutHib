@@ -13,21 +13,27 @@ class FollowingViewModel: ViewModel() {
 
     private val _listFollowing = MutableLiveData<List<UserData?>?>()
     val listFollowing = _listFollowing
+    val isLoading = MutableLiveData<Boolean>()
 
     fun getFollowing(username:String) {
 
+        isLoading.value = true
         val client = ApiConfig.getApiService().getFollowing(username)
         client.enqueue(object : Callback<List<UserData>> {
             override fun onResponse(
                 call: Call<List<UserData>>,
                 response: Response<List<UserData>>
             ) {
-                if (response.isSuccessful) _listFollowing.value = response.body()
+                if (response.isSuccessful) {
+                    _listFollowing.value = response.body()
+                    isLoading.value = false
+                }
                 else Log.e("FollowingViewModel", "onFailure: ${response.message()}")
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
                 Log.e("FollowingViewModel", "onFailure: ${t.message.toString()}")
+                isLoading.value = false
             }
         })
 

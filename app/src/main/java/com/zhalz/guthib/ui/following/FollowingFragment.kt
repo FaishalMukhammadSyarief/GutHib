@@ -7,15 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.FragmentFollowersBinding
+import com.zhalz.guthib.databinding.FragmentFollowingBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
 
 class FollowingFragment : Fragment() {
 
-    private var _binding: FragmentFollowersBinding? = null
+    private var _binding: FragmentFollowingBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FollowingViewModel by viewModels()
 
@@ -24,10 +26,11 @@ class FollowingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentFollowersBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentFollowingBinding.inflate(layoutInflater, container, false)
 
         getFollowing()
         viewModel.listFollowing.observe(viewLifecycleOwner) { setRecycler(it) }
+        viewModel.isLoading.observe(viewLifecycleOwner) { binding.animLoading.isVisible = it }
 
         return binding.root
     }
@@ -46,7 +49,7 @@ class FollowingFragment : Fragment() {
     private fun setRecycler(userList: List<UserData?>?) {
         val adapter = UserAdapter { toDetail(it) }
         adapter.submitList(userList)
-        binding.rvFollowers.adapter = adapter
+        binding.rvFollowing.adapter = adapter
     }
 
     private fun toDetail(data: UserData) {

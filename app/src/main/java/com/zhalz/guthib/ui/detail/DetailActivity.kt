@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
@@ -22,6 +23,7 @@ class DetailActivity : AppCompatActivity() {
 
         initUI()
         getDetailUser()
+        viewModel.isLoading.observe(this) { binding.animLoading.isVisible = it }
 
     }
 
@@ -43,29 +45,41 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getDetailUser() {
 
-        /* === GET DATA === */
         @Suppress("DEPRECATION")
         val userData =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
             else intent.getParcelableExtra(EXTRA_USER)
 
-        val name = userData?.login
-        val image = userData?.avatarUrl
-
-        name?.let { viewModel.getDetailUser(it) }
-
-        /* === SET DATA === */
+        userData?.login?.let { viewModel.getDetailUser(it) }
 
         viewModel.userData.observe(this) { detailUser ->
-            detailUser.name.let { binding.tvName.text = it }
-            detailUser.bio.let { binding.tvBio.text = it }
+            detailUser.apply {
+                login.let { binding.collapsingToolbar.title = it }
+                name.let { binding.tvName.text = it }
+                bio.let { binding.tvBio.text = it }
+            }
+
+            detailUser.avatarUrl.let {
+                Glide
+                    .with(this)
+                    .load(it)
+                    .into(binding.ivImage)
+            }
+
+            setFollowersTitle(detailUser.followers)
+            setFollowingTitle(detailUser.following)
         }
 
-        binding.collapsingToolbar.title = name
-        Glide
-            .with(this)
-            .load(image)
-            .into(binding.ivImage)
+    }
+
+    private fun setFollowersTitle(totalFollowers: Int?) {
+        val title = "FOLLOWERS  ($totalFollowers)"
+        binding.tabLayout.getTabAt(0)?.text = title
+    }
+
+    private fun setFollowingTitle(totalFollowing: Int?) {
+        val title = "FOLLOWING  ($totalFollowing)"
+        binding.tabLayout.getTabAt(1)?.text = title
     }
 
     companion object {

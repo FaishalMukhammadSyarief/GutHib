@@ -30,6 +30,9 @@ data class UserData(
 
 data class DetailUser (
 
+    @field:SerializedName("login")
+    val login: String? = null,
+
     @field:SerializedName("bio")
     val bio: String? = null,
 

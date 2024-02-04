@@ -11,6 +11,14 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">1.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginVertical">2dp</item>
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:background">@drawable/shape_round</item>
+    </style>
+
     <style name="ToolbarTitle">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
@@ -18,12 +26,33 @@
         <item name="android:fontFamily">@font/varela_round_regular</item>
     </style>
 
-    <style name="Divider">
-        <item name="android:layout_width">1.5dp</item>
+    <style name="RecyclerView">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginVertical">2dp</item>
-        <item name="android:layout_marginHorizontal">10dp</item>
-        <item name="android:background">@drawable/shape_round</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">8dp</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="Loading">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">gone</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+        <item name="lottie_rawRes">@raw/loading</item>
+    </style>
+
+    <style name="Error">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">50dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+        <item name="lottie_rawRes">@raw/error_bot</item>
     </style>
 
 </resources>

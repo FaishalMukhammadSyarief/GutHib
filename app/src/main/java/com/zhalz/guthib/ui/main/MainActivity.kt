@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
@@ -41,8 +42,9 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        /* === LOADING === */
+        /* === MESSAGE === */
         viewModel.isLoading.observe(this) { binding.lottieLoading.isVisible = it }
+        viewModel.isSearching.observe(this) { binding.tvStartMessage.isGone = it }
 
     }
 

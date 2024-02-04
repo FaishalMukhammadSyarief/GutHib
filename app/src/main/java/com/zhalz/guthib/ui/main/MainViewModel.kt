@@ -15,10 +15,12 @@ class MainViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
     val isLoading = MutableLiveData<Boolean>()
+    val isSearching = MutableLiveData<Boolean>()
 
     fun getUser(query: String) {
 
         isLoading.value = true
+        isSearching.value = true
 
         val client = ApiConfig.getApiService().searchUser(query)
         client.enqueue(object : Callback<UserResponse> {

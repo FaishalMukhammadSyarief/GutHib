@@ -39,8 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/hint_search"
-        app:layout_anchor="@id/search_bar"
-        app:backgroundTint="@color/white"/>
+        app:backgroundTint="@color/white"
+        app:layout_anchor="@id/search_bar" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_loading"
@@ -49,8 +49,19 @@
         android:layout_gravity="center"
         android:visibility="invisible"
         app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/loading"
-        app:lottie_loop="true" />
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
+    <TextView
+        android:id="@+id/tv_start_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingHorizontal="30dp"
+        android:text="@string/txt_start"
+        android:textColor="@color/grey"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

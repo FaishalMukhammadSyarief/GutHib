@@ -1,5 +1,6 @@
 package com.zhalz.guthib.data.retrofit
 
+import com.zhalz.guthib.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +11,8 @@ class ApiConfig {
         fun getApiService() : ApiService {
 
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                if(BuildConfig.DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                else HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
             val client =
                 OkHttpClient.Builder()
@@ -19,7 +21,7 @@ class ApiConfig {
 
             val retrofit =
                 Retrofit.Builder()
-                    .baseUrl("https://api.github.com/")
+                    .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build()

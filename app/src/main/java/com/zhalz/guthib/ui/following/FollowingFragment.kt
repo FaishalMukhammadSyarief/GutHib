@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.zhalz.guthib.adapter.UserAdapter
@@ -29,7 +30,8 @@ class FollowingFragment : Fragment() {
 
         getFollowing()
         viewModel.listFollowing.observe(viewLifecycleOwner) { setRecycler(it) }
-        viewModel.isLoading.observe(viewLifecycleOwner) { binding.animLoading.isVisible = it }
+        viewModel.isLoadingGone.observe(viewLifecycleOwner) { binding.animLoading.isGone = it }
+        viewModel.isErrorGone.observe(viewLifecycleOwner) { binding.lottieError.isGone = it }
 
         return binding.root
     }

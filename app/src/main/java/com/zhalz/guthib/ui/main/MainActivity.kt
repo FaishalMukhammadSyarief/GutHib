@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
@@ -43,10 +42,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         /* === MESSAGE === */
-        viewModel.isLoading.observe(this) { binding.lottieLoading.isVisible = it }
-        viewModel.isSearching.observe(this) {
-            binding.tvStartMessage.isGone = it
-            binding.tvStartMessage.text = getString(R.string.txt_not_found)
+        viewModel.apply {
+            isLoadingGone.observe(this@MainActivity) { binding.lottieLoading.isGone = it }
+            isErrorGone.observe(this@MainActivity) { binding.lottieError.isGone = it }
+            isSearching.observe(this@MainActivity) {
+                binding.tvStartMessage.isGone = it
+                binding.tvStartMessage.text = getString(R.string.txt_not_found)
+            }
         }
 
     }

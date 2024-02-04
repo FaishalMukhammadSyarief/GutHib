@@ -14,12 +14,13 @@ class MainViewModel : ViewModel() {
 
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
-    val isLoading = MutableLiveData<Boolean>()
+    val isLoadingGone = MutableLiveData<Boolean>()
     val isSearching = MutableLiveData<Boolean>()
+    val isErrorGone = MutableLiveData<Boolean>()
 
     fun getUser(query: String) {
 
-        isLoading.value = true
+        isLoadingGone.value = false
         isSearching.value = true
 
         val client = ApiConfig.getApiService().searchUser(query)
@@ -28,17 +29,22 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
-                    isLoading.value = false
+                    isLoadingGone.value = true
                     if (response.body()?.totalCount == 0) {
                         isSearching.value = false
                     }
                 }
-                else Log.e("MainViewModel", "onFailure: ${response.message()}")
+                else {
+                    Log.e("MainViewModel", "onFailure: ${response.message()}")
+                    isErrorGone.value = false
+                    isLoadingGone.value = true
+                }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message.toString()}")
-                isLoading.value = false
+                isErrorGone.value = false
+                isLoadingGone.value = true
             }
 
         })

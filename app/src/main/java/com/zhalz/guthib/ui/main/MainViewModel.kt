@@ -22,6 +22,7 @@ class MainViewModel : ViewModel() {
 
         isLoadingGone.value = false
         isSearching.value = true
+        isErrorGone.value = true
 
         val client = ApiConfig.getApiService().searchUser(query)
         client.enqueue(object : Callback<UserResponse> {

@@ -54,12 +54,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
-
         binding.searchView
             .editText
             .setOnEditorActionListener { _, _, _ ->
                 val query = binding.searchView.text.toString()
                 viewModel.getUser(query)
+
+                val emptyList = listOf<UserData>()
+                setRecycler(emptyList)
+
                 binding.searchView.hide()
                 true
             }

@@ -29,6 +29,9 @@ class MainViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
                     isLoading.value = false
+                    if (response.body()?.totalCount == 0) {
+                        isSearching.value = false
+                    }
                 }
                 else Log.e("MainViewModel", "onFailure: ${response.message()}")
             }

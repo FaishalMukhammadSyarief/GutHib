@@ -6,6 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 data class UserResponse(
 
+    @field:SerializedName("total_count")
+    val totalCount: Int? = null,
+
     @field:SerializedName("items")
     val items: List<UserData?>? = null
 

@@ -44,7 +44,10 @@ class MainActivity : AppCompatActivity() {
 
         /* === MESSAGE === */
         viewModel.isLoading.observe(this) { binding.lottieLoading.isVisible = it }
-        viewModel.isSearching.observe(this) { binding.tvStartMessage.isGone = it }
+        viewModel.isSearching.observe(this) {
+            binding.tvStartMessage.isGone = it
+            binding.tvStartMessage.text = getString(R.string.txt_not_found)
+        }
 
     }
 

@@ -13,25 +13,33 @@ class FollowersViewModel: ViewModel() {
 
     private val _listFollowers = MutableLiveData<List<UserData?>?>()
     val  listFollowers = _listFollowers
-    val isLoading = MutableLiveData<Boolean>()
+    val isLoadingGone = MutableLiveData<Boolean>()
+    val isErrorGone = MutableLiveData<Boolean>()
 
     fun getFollowers(username: String) {
 
-        isLoading.value = true
+        isLoadingGone.value = false
+        isErrorGone.value = true
+
         val client = ApiConfig.getApiService().getFollowers(username)
         client.enqueue(object: Callback<List<UserData>> {
 
             override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
                 if (response.isSuccessful) {
                     _listFollowers.value = response.body()
-                    isLoading.value = false
+                    isLoadingGone.value = true
                 }
-                else Log.e("FollowersViewModel", "onFailure: ${response.message()}")
+                else {
+                    Log.e("FollowersViewModel", "onFailure: ${response.message()}")
+                    isLoadingGone.value = true
+                    isErrorGone.value = false
+                }
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
                 Log.e("FollowersViewModel", "onFailure: ${t.message.toString()}")
-                isLoading.value = false
+                isLoadingGone.value = true
+                isErrorGone.value = false
             }
 
         })

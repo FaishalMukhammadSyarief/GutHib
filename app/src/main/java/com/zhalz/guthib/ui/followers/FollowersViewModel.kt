@@ -15,11 +15,13 @@ class FollowersViewModel: ViewModel() {
     val  listFollowers = _listFollowers
     val isLoadingGone = MutableLiveData<Boolean>()
     val isErrorGone = MutableLiveData<Boolean>()
+    val isEmptyGone = MutableLiveData<Boolean>()
 
     fun getFollowers(username: String) {
 
         isLoadingGone.value = false
         isErrorGone.value = true
+        isEmptyGone.value = true
 
         val client = ApiConfig.getApiService().getFollowers(username)
         client.enqueue(object: Callback<List<UserData>> {
@@ -28,6 +30,8 @@ class FollowersViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     _listFollowers.value = response.body()
                     isLoadingGone.value = true
+                    val totalCount = response.body()?.size
+                    if (totalCount == 0) isEmptyGone.value = false
                 }
                 else {
                     Log.e("FollowersViewModel", "onFailure: ${response.message()}")
@@ -41,7 +45,6 @@ class FollowersViewModel: ViewModel() {
                 isLoadingGone.value = true
                 isErrorGone.value = false
             }
-
         })
 
     }

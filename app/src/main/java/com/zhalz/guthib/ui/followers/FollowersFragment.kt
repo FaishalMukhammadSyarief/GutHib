@@ -30,6 +30,7 @@ class FollowersFragment : Fragment() {
         viewModel.listFollowers.observe(viewLifecycleOwner) { setRecycler(it) }
         viewModel.isLoadingGone.observe(viewLifecycleOwner) { binding.animLoading.isGone = it}
         viewModel.isErrorGone.observe(viewLifecycleOwner) { binding.lottieError.isGone = it}
+        viewModel.isEmptyGone.observe(viewLifecycleOwner) { binding.lottieEmpty.isGone = it}
 
         return binding.root
     }

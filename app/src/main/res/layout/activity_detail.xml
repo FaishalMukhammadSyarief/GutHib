@@ -109,37 +109,24 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:contentDescription="@string/tab_layout"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorFullWidth="true"
+            app:tabMode="fixed"
+            app:tabRippleColor="@color/transparent"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/dark_grey" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/tab_layout"
-                app:tabIndicatorColor="@color/black"
-                app:tabIndicatorFullWidth="true"
-                app:tabMode="fixed"
-                app:tabRippleColor="@color/transparent"
-                app:tabSelectedTextColor="@color/black"
-                app:tabTextColor="@color/dark_grey" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

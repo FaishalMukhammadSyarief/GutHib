@@ -12,10 +12,15 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/anim_loading"
-        style="@style/Loading" />
+        style="@style/Loading"
+        android:layout_gravity="top|center_horizontal"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_error"
         style="@style/Error" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_empty"
+        style="@style/Empty" />
 
 </FrameLayout>

@@ -15,21 +15,23 @@ class FollowingViewModel: ViewModel() {
     val listFollowing = _listFollowing
     val isLoadingGone = MutableLiveData<Boolean>()
     val isErrorGone = MutableLiveData<Boolean>()
+    val isEmptyGone = MutableLiveData<Boolean>()
 
     fun getFollowing(username:String) {
 
         isLoadingGone.value = false
         isErrorGone.value = true
+        isEmptyGone.value = true
 
         val client = ApiConfig.getApiService().getFollowing(username)
         client.enqueue(object : Callback<List<UserData>> {
-            override fun onResponse(
-                call: Call<List<UserData>>,
-                response: Response<List<UserData>>
-            ) {
+
+            override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
                 if (response.isSuccessful) {
                     _listFollowing.value = response.body()
                     isLoadingGone.value = true
+                    val totalCount = response.body()?.size
+                    if (totalCount == 0) isEmptyGone.value = false
                 }
                 else {
                     Log.e("FollowingViewModel", "onFailure: ${response.message()}")

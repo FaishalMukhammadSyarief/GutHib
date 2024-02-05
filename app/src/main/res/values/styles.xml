@@ -55,4 +55,14 @@
         <item name="lottie_rawRes">@raw/error_bot</item>
     </style>
 
+    <style name="Empty">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">gone</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+        <item name="lottie_rawRes">@raw/empty</item>
+    </style>
+
 </resources>

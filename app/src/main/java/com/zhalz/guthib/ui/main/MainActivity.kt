@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
+import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
@@ -14,10 +15,7 @@ import com.zhalz.guthib.ui.detail.DetailActivity
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
-
-    private val binding: ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
+    private val binding: ActivityMainBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_main) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     private fun setRecycler(userList: List<UserData?>?) {
         val adapter = UserAdapter{ toDetail(it) }
         adapter.submitList(userList)
-        binding.rvUser.adapter = adapter
+        binding.adapter = adapter
     }
 
     private fun toDetail(data: UserData) {

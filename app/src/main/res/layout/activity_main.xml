@@ -1,61 +1,73 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_layout"
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.zhalz.guthib.adapter.UserAdapter" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="5dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
-            app:menu="@menu/menu_home"
-            app:title="@string/app_name"
-            app:titleTextAppearance="@style/ToolbarTitle"
-            tools:ignore="RtlSymmetry" />
+            tools:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="5dp"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
+                app:menu="@menu/menu_home"
+                app:title="@string/app_name"
+                app:titleTextAppearance="@style/ToolbarTitle"
+                tools:ignore="RtlSymmetry" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_user"
-        style="@style/RecyclerView"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_user" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.search.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="@string/hint_search"
-        app:backgroundTint="@color/white"
-        app:layout_anchor="@id/search_bar" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user"
+            style="@style/RecyclerView"
+            android:adapter="@{adapter}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_user" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_loading"
-        style="@style/Loading" />
+        <com.google.android.material.search.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_search"
+            app:backgroundTint="@color/white"
+            app:layout_anchor="@id/search_bar" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_error"
-        style="@style/Error" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            style="@style/Loading" />
 
-    <TextView
-        android:id="@+id/tv_start_message"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingHorizontal="30dp"
-        android:text="@string/txt_start"
-        android:textColor="@color/grey"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_error"
+            style="@style/Error" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/tv_start_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingHorizontal="30dp"
+            android:text="@string/txt_start"
+            android:textColor="@color/grey"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
 

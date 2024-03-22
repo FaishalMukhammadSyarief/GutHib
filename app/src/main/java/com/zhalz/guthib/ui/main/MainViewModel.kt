@@ -14,15 +14,16 @@ class MainViewModel : ViewModel() {
 
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
-    val isLoadingGone = MutableLiveData<Boolean>()
-    val isSearching = MutableLiveData<Boolean>()
-    val isErrorGone = MutableLiveData<Boolean>()
+
+    val isLoading = MutableLiveData<Boolean>()
+    val isError = MutableLiveData<Boolean>()
+    val isEmpty = MutableLiveData<Boolean>()
 
     fun getUser(query: String) {
 
-        isLoadingGone.value = false
-        isSearching.value = true
-        isErrorGone.value = true
+        isLoading.value = true
+        isError.value = false
+        isEmpty.value = false
 
         val client = ApiConfig.getApiService().searchUser(query)
         client.enqueue(object : Callback<UserResponse> {
@@ -30,22 +31,22 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
-                    isLoadingGone.value = true
+                    isLoading.value = false
                     if (response.body()?.totalCount == 0) {
-                        isSearching.value = false
+                        isEmpty.value = true
                     }
                 }
                 else {
                     Log.e("MainViewModel", "onFailure: ${response.message()}")
-                    isErrorGone.value = false
-                    isLoadingGone.value = true
+                    isError.value = true
+                    isLoading.value = false
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message.toString()}")
-                isErrorGone.value = false
-                isLoadingGone.value = true
+                isError.value = true
+                isLoading.value = false
             }
 
         })

@@ -8,6 +8,20 @@
             name="adapter"
             type="com.zhalz.guthib.adapter.UserAdapter" />
 
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -51,11 +65,13 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_loading"
-            style="@style/Loading" />
+            style="@style/Loading"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_error"
-            style="@style/Error" />
+            style="@style/Error"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/tv_start_message"
@@ -63,10 +79,11 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingHorizontal="30dp"
-            android:text="@string/txt_start"
+            android:text="@string/txt_not_found"
             android:textColor="@color/grey"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

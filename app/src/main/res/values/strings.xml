@@ -9,5 +9,5 @@
     <string name="my_name">Faishal Mukhammad Syarief</string>
     <string name="favorite">Favorite</string>
     <string name="txt_start">Start Searching Your Account</string>
-    <string name="txt_not_found">You Search Nothing</string>
+    <string name="txt_not_found">User not Found</string>
 </resources>

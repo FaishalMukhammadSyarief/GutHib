@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
@@ -41,12 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         /* === MESSAGE === */
         viewModel.apply {
-            isLoadingGone.observe(this@MainActivity) { binding.lottieLoading.isGone = it }
-            isErrorGone.observe(this@MainActivity) { binding.lottieError.isGone = it }
-            isSearching.observe(this@MainActivity) {
-                binding.tvStartMessage.isGone = it
-                binding.tvStartMessage.text = getString(R.string.txt_not_found)
-            }
+            isLoading.observe(this@MainActivity) { binding.isLoading = it }
+            isError.observe(this@MainActivity) { binding.isError = it }
+            isEmpty.observe(this@MainActivity) { binding.isEmpty = it }
         }
 
     }

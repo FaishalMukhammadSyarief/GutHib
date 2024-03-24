@@ -42,24 +42,21 @@
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="@string/app_name"
                 app:collapsedTitleTextAppearance="@style/ToolbarTitle"
                 app:collapsedTitleTextColor="@color/white"
                 app:contentScrim="@color/black"
-                app:collapsedTitleGravity="center"
-                app:expandedTitleGravity="center|bottom"
                 app:expandedTitleTextColor="@color/transparent"
-                app:expandedTitleTextAppearance="@style/ExpandedToolbarTitle"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                app:title="@string/app_name"
                 app:titleCollapseMode="scale">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/black"
+                    android:fitsSystemWindows="true"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:fitsSystemWindows="true">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -79,8 +76,8 @@
                         android:background="@drawable/bg_search"
                         android:queryHint="Search"
                         app:iconifiedByDefault="false"
-                        app:queryHint="Search Account Here..."
-                        app:queryBackground="@null" />
+                        app:queryBackground="@null"
+                        app:queryHint="Search Account Here..." />
 
                 </LinearLayout>
 
@@ -98,10 +95,10 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="8dp"
+            android:background="@drawable/bg_layout"
             android:paddingHorizontal="6dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@drawable/bg_layout">
+            android:paddingTop="8dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_user"

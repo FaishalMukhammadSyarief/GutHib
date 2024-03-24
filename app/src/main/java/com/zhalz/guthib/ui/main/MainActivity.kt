@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         /** === TOOLBAR MENU CLICK === **/
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.search_bar -> {
+                R.id.menu_favorite -> {
                     Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
                 }
             }

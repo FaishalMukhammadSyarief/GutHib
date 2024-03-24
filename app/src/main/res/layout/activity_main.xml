@@ -46,7 +46,10 @@
                 app:collapsedTitleTextAppearance="@style/ToolbarTitle"
                 app:collapsedTitleTextColor="@color/white"
                 app:contentScrim="@color/black"
+                app:collapsedTitleGravity="center"
+                app:expandedTitleGravity="center|bottom"
                 app:expandedTitleTextColor="@color/transparent"
+                app:expandedTitleTextAppearance="@style/ExpandedToolbarTitle"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
                 app:titleCollapseMode="scale">
 
@@ -61,8 +64,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="70dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="75dp"
+                        android:layout_marginEnd="120dp"
                         android:text="@string/home_message"
                         android:textColor="@color/white"
                         android:textSize="32sp"
@@ -73,7 +76,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:layout_marginBottom="12dp"
                         android:background="@drawable/bg_search"
                         android:queryHint="Search"
                         app:iconifiedByDefault="false"

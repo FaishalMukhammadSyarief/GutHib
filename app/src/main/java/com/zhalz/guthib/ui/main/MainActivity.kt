@@ -2,8 +2,10 @@ package com.zhalz.guthib.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
@@ -15,57 +17,53 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private val binding: ActivityMainBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_main) }
+    private val adapter: UserAdapter by lazy { UserAdapter{ toDetail(it) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.adapter = adapter
+
         initUI()
-        getUser()
-        viewModel.listUser.observe(this) { setRecycler(it) }
+        viewModel.listUser.observe(this) { adapter.submitList(it) }
 
     }
 
     private fun initUI() {
 
-        /* === TOOLBAR MENU CLICK === */
+        /** === SEARCH VIEW LISTENER === **/
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchUser(query ?: "")
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+        /** === TOOLBAR MENU CLICK === **/
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.search_bar -> {
-                    binding.searchView.show()
+                    Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
                 }
             }
             true
         }
 
-        /* === MESSAGE === */
+        /** === MESSAGE === **/
         viewModel.apply {
             isLoading.observe(this@MainActivity) { binding.isLoading = it }
             isError.observe(this@MainActivity) { binding.isError = it }
             isEmpty.observe(this@MainActivity) { binding.isEmpty = it }
         }
-
     }
 
-    private fun getUser() {
-        binding.searchView
-            .editText
-            .setOnEditorActionListener { _, _, _ ->
-                val query = binding.searchView.text.toString()
-                viewModel.getUser(query)
-
-                val emptyList = listOf<UserData>()
-                setRecycler(emptyList)
-
-                binding.searchView.hide()
-                true
-            }
-    }
-
-    private fun setRecycler(userList: List<UserData?>?) {
-        val adapter = UserAdapter{ toDetail(it) }
-        adapter.submitList(userList)
-        binding.adapter = adapter
+    private fun searchUser(query: String) {
+        adapter.submitList(listOf<UserData>())
+        viewModel.getUser(query)
     }
 
     private fun toDetail(data: UserData) {

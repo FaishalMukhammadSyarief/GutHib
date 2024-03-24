@@ -69,6 +69,7 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -109,13 +110,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.search.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_search"
-            app:backgroundTint="@color/white"
-            app:layout_anchor="@id/search_bar" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_loading"

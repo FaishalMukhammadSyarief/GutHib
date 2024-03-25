@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter

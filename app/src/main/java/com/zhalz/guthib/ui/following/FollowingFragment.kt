@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.FragmentFollowingBinding
@@ -24,8 +26,7 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentFollowingBinding.inflate(layoutInflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following, container, false)
 
         getFollowing()
         viewModel.listFollowing.observe(viewLifecycleOwner) { setRecycler(it) }

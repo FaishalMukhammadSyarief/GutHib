@@ -13,15 +13,16 @@ class FollowersViewModel: ViewModel() {
 
     private val _listFollowers = MutableLiveData<List<UserData?>?>()
     val  listFollowers = _listFollowers
-    val isLoadingGone = MutableLiveData<Boolean>()
-    val isErrorGone = MutableLiveData<Boolean>()
-    val isEmptyGone = MutableLiveData<Boolean>()
+
+    val isLoading = MutableLiveData<Boolean>()
+    val isError = MutableLiveData<Boolean>()
+    val isEmpty = MutableLiveData<Boolean>()
 
     fun getFollowers(username: String) {
 
-        isLoadingGone.value = false
-        isErrorGone.value = true
-        isEmptyGone.value = true
+        isLoading.value = true
+        isError.value = false
+        isEmpty.value = false
 
         val client = ApiConfig.getApiService().getFollowers(username)
         client.enqueue(object: Callback<List<UserData>> {
@@ -29,21 +30,21 @@ class FollowersViewModel: ViewModel() {
             override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
                 if (response.isSuccessful) {
                     _listFollowers.value = response.body()
-                    isLoadingGone.value = true
+                    isLoading.value = false
                     val totalCount = response.body()?.size
-                    if (totalCount == 0) isEmptyGone.value = false
+                    if (totalCount == 0) isEmpty.value = true
                 }
                 else {
                     Log.e("FollowersViewModel", "onFailure: ${response.message()}")
-                    isLoadingGone.value = true
-                    isErrorGone.value = false
+                    isLoading.value = false
+                    isError.value = true
                 }
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
                 Log.e("FollowersViewModel", "onFailure: ${t.message.toString()}")
-                isLoadingGone.value = true
-                isErrorGone.value = false
+                isLoading.value = false
+                isError.value = true
             }
         })
 

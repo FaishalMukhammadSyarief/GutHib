@@ -27,7 +27,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/vantablack"
         android:fitsSystemWindows="true"
         tools:context=".ui.main.MainActivity">
 
@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:collapsedTitleTextAppearance="@style/ToolbarTitle"
-                app:collapsedTitleTextColor="@color/white"
-                app:contentScrim="@color/black"
+                app:collapsedTitleTextColor="@color/vantawhite"
+                app:contentScrim="@color/vantablack"
                 app:expandedTitleTextColor="@color/transparent"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
                 app:title="@string/app_name"
@@ -53,7 +53,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/black"
+                    android:background="@color/vantablack"
                     android:fitsSystemWindows="true"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -65,7 +65,7 @@
                         android:layout_marginTop="80dp"
                         android:layout_marginEnd="120dp"
                         android:text="@string/home_message"
-                        android:textColor="@color/white"
+                        android:textColor="@color/vantawhite"
                         android:textSize="32sp"
                         android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                     android:paddingEnd="16dp"
                     app:layout_collapseMode="pin"
                     app:menu="@menu/menu_home"
-                    app:titleTextColor="@color/white"
+                    app:titleTextColor="@color/vantawhite"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

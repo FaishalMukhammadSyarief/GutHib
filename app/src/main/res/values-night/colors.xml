@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="vantablack">#FF000000</color>
+
+    <color name="black">#fff7fe</color>
+    <color name="white">#1B1C1E</color>
+    <color name="grey">#48454e</color>
+</resources>

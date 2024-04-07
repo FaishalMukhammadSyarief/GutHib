@@ -1,14 +1,11 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Base.Theme.GutHib" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/black</item>
 
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="fontFamily">@font/nunito_regular</item>
-
     </style>
 
     <style name="Theme.GutHib" parent="Base.Theme.GutHib" />

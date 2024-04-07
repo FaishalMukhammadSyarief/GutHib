@@ -32,6 +32,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_followers"
             style="@style/RecyclerView"
+            android:adapter="@{adapter}"
             tools:listitem="@layout/item_user" />
 
         <com.airbnb.lottie.LottieAnimationView

@@ -4,6 +4,24 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.zhalz.guthib.adapter.UserAdapter" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <FrameLayout
@@ -14,20 +32,24 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_following"
             style="@style/RecyclerView"
+            android:adapter="@{adapter}"
             tools:listitem="@layout/item_user" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/anim_loading"
             style="@style/Loading"
-            android:layout_gravity="top|center_horizontal" />
+            android:layout_gravity="top|center_horizontal"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_error"
-            style="@style/Error" />
+            style="@style/Error"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE}" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_empty"
-            style="@style/Empty" />
+            style="@style/Empty"
+            android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
 
     </FrameLayout>
 </layout>

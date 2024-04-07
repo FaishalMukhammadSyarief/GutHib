@@ -10,6 +10,7 @@ import com.zhalz.guthib.R
 class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_setting)
 
         initUI()

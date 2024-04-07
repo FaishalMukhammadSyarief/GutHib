@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -14,6 +15,7 @@ import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
+import com.zhalz.guthib.setting.SettingActivity
 import com.zhalz.guthib.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(binding.root)
 
         binding.adapter = adapter
@@ -50,9 +53,8 @@ class MainActivity : AppCompatActivity() {
         /** === TOOLBAR === **/
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.menu_favorite -> {
-                    Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
-                }
+                R.id.menu_favorite -> Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show()
+                R.id.menu_setting -> toSetting()
             }
             true
         }
@@ -78,11 +80,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun toSetting() {
+        val toDetail = Intent(this, SettingActivity::class.java)
+        startActivity(toDetail)
+    }
 
     private fun toDetail(data: UserData) {
         val toDetail = Intent(this, DetailActivity::class.java)
             .putExtra(DetailActivity.EXTRA_USER, data)
-
         startActivity(toDetail)
     }
 

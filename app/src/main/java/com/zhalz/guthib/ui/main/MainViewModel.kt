@@ -3,14 +3,20 @@ package com.zhalz.guthib.ui.main
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.zhalz.guthib.data.datastore.DataStoreSetting
 import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.data.response.UserResponse
 import com.zhalz.guthib.data.retrofit.ApiConfig
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val dataStore: DataStoreSetting) : ViewModel() {
 
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
@@ -52,5 +58,7 @@ class MainViewModel : ViewModel() {
         })
 
     }
+
+    fun getTheme() = dataStore.getTheme().asLiveData(Dispatchers.IO)
 
 }

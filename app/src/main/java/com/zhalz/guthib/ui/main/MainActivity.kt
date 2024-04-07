@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
@@ -17,7 +18,9 @@ import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
 import com.zhalz.guthib.ui.setting.SettingActivity
 import com.zhalz.guthib.ui.detail.DetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.adapter = adapter
 
         initUI()
+        observeTheme()
         viewModel.listUser.observe(this) { adapter.submitList(it) }
 
     }
@@ -77,6 +81,15 @@ class MainActivity : AppCompatActivity() {
         if (view != null) {
             val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    private fun observeTheme() {
+        viewModel.getTheme().observe(this) {
+            when(it) {
+                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         }
     }
 

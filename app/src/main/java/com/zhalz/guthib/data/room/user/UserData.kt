@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity
 data class UserData(
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @field:SerializedName("id")
     val id: Int? = null,
 

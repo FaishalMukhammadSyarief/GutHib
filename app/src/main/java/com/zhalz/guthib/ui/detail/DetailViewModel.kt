@@ -3,13 +3,20 @@ package com.zhalz.guthib.ui.detail
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.zhalz.guthib.data.response.DetailUser
 import com.zhalz.guthib.data.retrofit.ApiConfig
+import com.zhalz.guthib.data.room.user.UserDao
+import com.zhalz.guthib.data.room.user.UserData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class DetailViewModel: ViewModel() {
+@HiltViewModel
+class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewModel() {
 
     val userData = MutableLiveData<DetailUser>()
     val isLoading = MutableLiveData<Boolean>()
@@ -34,6 +41,15 @@ class DetailViewModel: ViewModel() {
             }
         })
 
+    }
+
+    fun insertUser(user: UserData) = viewModelScope.launch {
+        userDao.insert(user)
+    }
+
+    fun checkFav(id: Int): Boolean {
+        val count = userDao.checkFav(id)
+        return count > 0
     }
 
 }

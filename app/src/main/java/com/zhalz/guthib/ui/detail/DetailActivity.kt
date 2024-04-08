@@ -5,17 +5,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
     private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val viewModel: DetailViewModel by viewModels()
+
+    @Suppress("DEPRECATION")
+    private val userData: UserData? by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
+        else intent.getParcelableExtra(EXTRA_USER)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +34,14 @@ class DetailActivity : AppCompatActivity() {
 
         initUI()
         getDetailUser()
+        checkFav()
         viewModel.isLoading.observe(this) { binding.animLoading.isVisible = it }
 
     }
 
     private fun initUI() {
 
-        /* === VIEW PAGER === */
+        /** == VIEW PAGER == **/
         binding.viewPager.adapter = PagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
@@ -38,17 +50,18 @@ class DetailActivity : AppCompatActivity() {
             }
         } .attach()
 
-        /* === TOOLBAR NAV CLICK === */
+        /** == TOOLBAR == **/
         binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_favorite -> userData?.let { user -> viewModel.insertUser(user) }
+            }
+            true
+        }
 
     }
 
     private fun getDetailUser() {
-
-        @Suppress("DEPRECATION")
-        val userData =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
-            else intent.getParcelableExtra(EXTRA_USER)
 
         userData?.login?.let { viewModel.getDetailUser(it) }
 
@@ -80,6 +93,14 @@ class DetailActivity : AppCompatActivity() {
     private fun setFollowingTitle(totalFollowing: Int?) {
         val title = "FOLLOWING  ($totalFollowing)"
         binding.tabLayout.getTabAt(1)?.text = title
+    }
+
+    private fun checkFav() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val isFav = userData?.id?.let { viewModel.checkFav(it) } ?: false
+            if (isFav) binding.toolbar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.ic_star_filled)
+            else binding.toolbar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.ic_star_empty)
+        }
     }
 
     companion object {

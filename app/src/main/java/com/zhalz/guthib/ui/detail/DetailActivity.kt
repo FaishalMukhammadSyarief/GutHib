@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
+import com.zhalz.guthib.data.constant.Const.Parcel.EXTRA_USER
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,10 +102,6 @@ class DetailActivity : AppCompatActivity() {
             if (isFav) binding.toolbar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.ic_star_filled)
             else binding.toolbar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.ic_star_empty)
         }
-    }
-
-    companion object {
-        const val EXTRA_USER = "extra_user"
     }
 
 }

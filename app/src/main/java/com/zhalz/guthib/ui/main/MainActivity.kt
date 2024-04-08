@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
+import com.zhalz.guthib.data.constant.Const.Parcel.EXTRA_USER
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
 import com.zhalz.guthib.ui.setting.SettingActivity
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun toDetail(data: UserData) {
         val toDetail = Intent(this, DetailActivity::class.java)
-            .putExtra(DetailActivity.EXTRA_USER, data)
+            .putExtra(EXTRA_USER, data)
         startActivity(toDetail)
     }
 

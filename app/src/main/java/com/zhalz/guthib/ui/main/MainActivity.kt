@@ -14,7 +14,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
-import com.zhalz.guthib.data.response.UserData
+import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
 import com.zhalz.guthib.ui.setting.SettingActivity
 import com.zhalz.guthib.ui.detail.DetailActivity

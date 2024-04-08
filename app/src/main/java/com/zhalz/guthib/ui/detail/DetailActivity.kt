@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
-import com.zhalz.guthib.data.response.UserData
+import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {

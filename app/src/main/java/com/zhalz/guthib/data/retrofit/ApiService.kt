@@ -1,10 +1,10 @@
 package com.zhalz.guthib.data.retrofit
 
 import com.zhalz.guthib.data.response.DetailUser
-import com.zhalz.guthib.data.response.UserData
 import com.zhalz.guthib.data.response.UserResponse
 import retrofit2.Call
 import com.zhalz.guthib.BuildConfig
+import com.zhalz.guthib.data.room.user.UserData
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path

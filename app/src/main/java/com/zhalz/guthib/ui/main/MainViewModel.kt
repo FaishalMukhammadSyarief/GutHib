@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.zhalz.guthib.data.datastore.DataStoreSetting
-import com.zhalz.guthib.data.response.UserData
+import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.data.response.UserResponse
 import com.zhalz.guthib.data.retrofit.ApiConfig
 import dagger.hilt.android.lifecycle.HiltViewModel

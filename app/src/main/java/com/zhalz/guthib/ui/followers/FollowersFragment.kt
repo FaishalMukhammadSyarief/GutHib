@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
+import com.zhalz.guthib.data.constant.Const.Parcel.EXTRA_USER
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.FragmentFollowersBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
@@ -39,15 +40,15 @@ class FollowersFragment : Fragment() {
     private fun getFollowers() {
         @Suppress("DEPRECATION")
         val followersData =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER, UserData::class.java)
-            else activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_USER)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) activity?.intent?.getParcelableExtra(EXTRA_USER, UserData::class.java)
+            else activity?.intent?.getParcelableExtra(EXTRA_USER)
 
         followersData?.login?.let { viewModel.getFollowers(it) }
     }
 
     private fun toDetail(data: UserData) {
         val toDetail = Intent(requireActivity(), DetailActivity::class.java)
-            .putExtra(DetailActivity.EXTRA_USER, data)
+            .putExtra(EXTRA_USER, data)
         startActivity(toDetail)
     }
 

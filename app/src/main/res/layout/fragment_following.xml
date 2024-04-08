@@ -38,6 +38,7 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/anim_loading"
             style="@style/Loading"
+            android:background="@drawable/shape_round"
             android:layout_gravity="top|center_horizontal"
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 

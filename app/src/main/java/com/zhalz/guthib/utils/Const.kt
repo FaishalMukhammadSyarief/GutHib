@@ -1,5 +1,7 @@
 package com.zhalz.guthib.utils
 
+import com.zhalz.guthib.BuildConfig
+
 object Const {
 
     object Parcel {
@@ -9,6 +11,10 @@ object Const {
     object DataStore {
         const val DATA_STORE_NAME = "settings"
         const val THEME_KEY = "theme_settings"
+    }
+
+    object Api {
+        const val API_KEY = BuildConfig.GITHUB_API_KEY
     }
 
 }

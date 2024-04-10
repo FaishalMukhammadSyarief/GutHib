@@ -3,7 +3,6 @@ package com.zhalz.guthib.data.retrofit
 import com.zhalz.guthib.data.response.DetailUser
 import com.zhalz.guthib.data.response.UserResponse
 import retrofit2.Call
-import com.zhalz.guthib.BuildConfig
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.utils.Const.Api.API_KEY
 import retrofit2.http.GET

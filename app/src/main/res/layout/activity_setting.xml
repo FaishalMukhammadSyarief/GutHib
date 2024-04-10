@@ -5,25 +5,40 @@
 
     <data>
 
-
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.setting.SettingActivity">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingEnd="16dp"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
+                app:navigationIcon="@drawable/ic_back"
+                app:navigationIconTint="@color/black"
+                app:title="@string/setting"
+                app:titleTextAppearance="@style/ToolbarTitle"
+                app:titleTextColor="@color/black"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/sw_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dark_mode"
+            android:layout_gravity="center"
+            android:text="@string/dark_mode" />
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

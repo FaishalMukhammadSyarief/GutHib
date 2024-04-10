@@ -17,11 +17,6 @@ class UserAdapter(val onItemClick : (UserData) -> Unit) : ListAdapter<UserData, 
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        /*holder.binding.tvName.text = getItem(position).login
-        Glide
-            .with(holder.itemView.context)
-            .load(getItem(position).avatarUrl)
-            .into(holder.binding.ivPhoto)*/
         holder.itemView.setOnClickListener { onItemClick(getItem(position)) }
         holder.binding.userData = getItem(position)
         holder.binding.executePendingBindings()

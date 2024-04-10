@@ -22,7 +22,7 @@ class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewMod
     private val _isFav = MutableLiveData<Boolean>()
     val isFav : LiveData<Boolean> = _isFav
 
-    val userData = MutableLiveData<DetailUser>()
+    val detailUser = MutableLiveData<DetailUser>()
     val isLoading = MutableLiveData<Boolean>()
 
     fun getDetailUser(username: String) {
@@ -34,7 +34,7 @@ class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewMod
 
             override fun onResponse(call: Call<DetailUser>, response: Response<DetailUser>) {
                 if (response.isSuccessful) {
-                    userData.value = response.body()
+                    detailUser.value = response.body()
                     isLoading.value = false
                 }
             }

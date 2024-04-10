@@ -1,132 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".ui.detail.DetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        tools:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <data>
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="440dp"
-            app:collapsedTitleGravity="center"
-            app:collapsedTitleTextColor="@color/vantawhite"
-            app:contentScrim="@color/vantablack"
-            app:expandedTitleGravity="center_horizontal|bottom"
-            app:expandedTitleTextAppearance="@style/ToolbarTitle"
-            app:expandedTitleTextColor="@color/vantawhite"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:titleCollapseMode="scale"
-            app:titleTextEllipsize="end"
-            tools:title="@string/my_name">
+        <variable
+            name="detailUser"
+            type="com.zhalz.guthib.data.response.DetailUser" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true">
+        <variable
+            name="isLoading"
+            type="Boolean" />
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/vantablack"
-                    android:fitsSystemWindows="true" />
+        <import type="android.view.View" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_image"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/vantawhite"
-                    android:fitsSystemWindows="true"
-                    android:padding="5dp"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
+    </data>
 
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    app:shapeAppearanceOverlay="@style/Rounded"
-                    app:strokeColor="@color/vantawhite"
-                    app:strokeWidth="3dp"
-                    tools:src="@drawable/ic_github" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/anim_loading"
-                    style="@style/Loading"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_image"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_image"
-                    app:layout_constraintStart_toStartOf="@+id/iv_image"
-                    app:layout_constraintTop_toTopOf="@+id/iv_image" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center|bottom"
-                    android:textColor="@color/vantawhite"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="ZhalZ" />
-
-                <TextView
-                    android:id="@+id/tv_bio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
-                    android:layout_marginBottom="28dp"
-                    android:gravity="center"
-                    android:justificationMode="inter_word"
-                    android:textColor="@color/vantawhite"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_image"
-                    tools:text="Voyage through the sea of code." />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:menu="@menu/menu_detail"
-                app:navigationIcon="@drawable/ic_back" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/tab_layout"
-            app:tabIndicatorColor="@color/black"
-            app:tabIndicatorFullWidth="true"
-            app:tabMode="fixed"
-            app:tabRippleColor="@color/transparent"
-            app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/dark_grey" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".ui.detail.DetailActivity">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            tools:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="440dp"
+                app:collapsedTitleGravity="center"
+                app:collapsedTitleTextColor="@color/vantawhite"
+                app:contentScrim="@color/vantablack"
+                app:expandedTitleGravity="center_horizontal|bottom"
+                app:expandedTitleTextAppearance="@style/ToolbarTitle"
+                app:expandedTitleTextColor="@color/vantawhite"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                app:title="@{detailUser.login}"
+                app:titleCollapseMode="scale"
+                app:titleTextEllipsize="end"
+                tools:title="@string/my_name">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true">
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/vantablack"
+                        android:fitsSystemWindows="true" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_image"
+                        imageUrl="@{detailUser.avatarUrl}"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/vantawhite"
+                        android:fitsSystemWindows="true"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:shapeAppearanceOverlay="@style/Rounded"
+                        app:strokeColor="@color/vantawhite"
+                        app:strokeWidth="3dp"
+                        tools:src="@drawable/ic_github" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/anim_loading"
+                        style="@style/Loading"
+                        android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_image"
+                        app:layout_constraintStart_toStartOf="@+id/iv_image"
+                        app:layout_constraintTop_toTopOf="@+id/iv_image" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center|bottom"
+                        android:text="@{detailUser.name}"
+                        android:textColor="@color/vantawhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="ZhalZ" />
+
+                    <TextView
+                        android:id="@+id/tv_bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginBottom="28dp"
+                        android:gravity="center"
+                        android:justificationMode="inter_word"
+                        android:text="@{detailUser.bio}"
+                        android:textColor="@color/vantawhite"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_image"
+                        tools:text="Voyage through the sea of code." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:menu="@menu/menu_detail"
+                    app:navigationIcon="@drawable/ic_back" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/tab_layout"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorFullWidth="true"
+                app:tabMode="fixed"
+                app:tabRippleColor="@color/transparent"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="@color/dark_grey" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -4,8 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
-import com.bumptech.glide.Glide
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
@@ -17,15 +16,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
-    private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
+    private val binding: ActivityDetailBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_detail) }
     private val viewModel: DetailViewModel by viewModels()
 
     @Suppress("DEPRECATION")
     private val userData: UserData? by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(
-            EXTRA_USER,
-            UserData::class.java
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(EXTRA_USER, UserData::class.java)
         else intent.getParcelableExtra(EXTRA_USER)
     }
 
@@ -37,7 +33,6 @@ class DetailActivity : AppCompatActivity() {
 
         initUI()
         getDetailUser()
-        viewModel.isLoading.observe(this) { binding.animLoading.isVisible = it }
 
     }
 
@@ -61,28 +56,20 @@ class DetailActivity : AppCompatActivity() {
             true
         }
 
+        /** == LOADING == **/
+        viewModel.isLoading.observe(this) { binding.isLoading = it }
+
     }
 
     private fun getDetailUser() {
 
         userData?.login?.let { viewModel.getDetailUser(it) }
 
-        viewModel.userData.observe(this) { detailUser ->
-            detailUser.apply {
-                login.let { binding.collapsingToolbar.title = it }
-                name.let { binding.tvName.text = it }
-                bio.let { binding.tvBio.text = it }
-            }
+        viewModel.detailUser.observe(this) {
+            binding.detailUser = it
 
-            detailUser.avatarUrl.let {
-                Glide
-                    .with(this)
-                    .load(it)
-                    .into(binding.ivImage)
-            }
-
-            setFollowersTitle(detailUser.followers)
-            setFollowingTitle(detailUser.following)
+            setFollowersTitle(it.followers)
+            setFollowingTitle(it.following)
             checkFav()
         }
     }

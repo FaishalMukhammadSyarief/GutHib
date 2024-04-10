@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.PagerAdapter
-import com.zhalz.guthib.data.constant.Const.Parcel.EXTRA_USER
+import com.zhalz.guthib.utils.Const.Parcel.EXTRA_USER
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,12 +75,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setFollowersTitle(totalFollowers: Int?) {
-        val title = "FOLLOWERS  ($totalFollowers)"
+        val title = getString(R.string.followers_title, totalFollowers)
         binding.tabLayout.getTabAt(0)?.text = title
     }
 
     private fun setFollowingTitle(totalFollowing: Int?) {
-        val title = "FOLLOWING  ($totalFollowing)"
+        val title = getString(R.string.following_title, totalFollowing)
         binding.tabLayout.getTabAt(1)?.text = title
     }
 

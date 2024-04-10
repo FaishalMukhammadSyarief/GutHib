@@ -6,8 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import com.zhalz.guthib.data.constant.Const.DataStore.DATA_STORE_NAME
-import com.zhalz.guthib.data.constant.Const.DataStore.THEME_KEY
+import com.zhalz.guthib.utils.Const.DataStore.DATA_STORE_NAME
+import com.zhalz.guthib.utils.Const.DataStore.THEME_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

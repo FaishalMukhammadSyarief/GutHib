@@ -13,4 +13,7 @@
     <string name="txt_not_found">User not Found</string>
     <string name="home_message">Search your Guthib account.</string>
     <string name="dark_mode">Dark Mode</string>
+
+    <string name="followers_title">FOLLOWERS  (%d)</string>
+    <string name="following_title">FOLLOWING  (%d)</string>
 </resources>

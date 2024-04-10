@@ -1,4 +1,4 @@
-package com.zhalz.guthib.data.constant
+package com.zhalz.guthib.utils
 
 object Const {
 

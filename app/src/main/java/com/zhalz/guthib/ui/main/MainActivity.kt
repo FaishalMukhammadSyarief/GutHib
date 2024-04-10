@@ -1,10 +1,7 @@
 package com.zhalz.guthib.ui.main
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -47,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchUser(query ?: "")
-                closeKeyboard(this@MainActivity)
+                binding.searchView.clearFocus()
                 return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -75,14 +72,6 @@ class MainActivity : AppCompatActivity() {
     private fun searchUser(query: String) {
         adapter.submitList(listOf<UserData>())
         viewModel.getUser(query)
-    }
-
-    fun closeKeyboard(activity: Activity) {
-        val view = activity.currentFocus
-        if (view != null) {
-            val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-        }
     }
 
     private fun observeTheme() {

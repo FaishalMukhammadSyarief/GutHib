@@ -18,6 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewModel() {
 
+    val isFav = MutableLiveData<Boolean>()
+
     val userData = MutableLiveData<DetailUser>()
     val isLoading = MutableLiveData<Boolean>()
 
@@ -43,13 +45,19 @@ class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewMod
 
     }
 
-    fun insertUser(user: UserData) = viewModelScope.launch {
-        userDao.insert(user)
+    fun checkFav(id: Int) = viewModelScope.launch {
+        val count = userDao.checkFav(id)
+        isFav.value = count > 0
     }
 
-    fun checkFav(id: Int): Boolean {
-        val count = userDao.checkFav(id)
-        return count > 0
+    fun insertUser(user: UserData) = viewModelScope.launch {
+        userDao.insert(user)
+        isFav.value = true
+    }
+
+    fun deleteUser(user: UserData) = viewModelScope.launch {
+        userDao.delete(user)
+        isFav.value = false
     }
 
 }

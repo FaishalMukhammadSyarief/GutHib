@@ -15,5 +15,5 @@ interface UserDao {
     suspend fun delete(user: UserData)
 
     @Query("SELECT count(*) FROM UserData WHERE id = :id")
-    fun checkFav(id: Int) : Int
+    suspend fun checkFav(id: Int) : Int
 }

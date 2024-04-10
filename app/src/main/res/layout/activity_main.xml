@@ -122,6 +122,7 @@
                 android:id="@+id/lottie_loading"
                 style="@style/Loading"
                 android:background="@drawable/shape_round"
+                android:backgroundTint="@color/vantawhite"
                 android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
             <com.airbnb.lottie.LottieAnimationView

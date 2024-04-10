@@ -1,6 +1,7 @@
 package com.zhalz.guthib.ui.detail
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewModel() {
 
-    val isFav = MutableLiveData<Boolean>()
+    private val _isFav = MutableLiveData<Boolean>()
+    val isFav : LiveData<Boolean> = _isFav
 
     val userData = MutableLiveData<DetailUser>()
     val isLoading = MutableLiveData<Boolean>()
@@ -47,17 +49,17 @@ class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewMod
 
     fun checkFav(id: Int) = viewModelScope.launch {
         val count = userDao.checkFav(id)
-        isFav.value = count > 0
+        _isFav.value = count > 0
     }
 
     fun insertUser(user: UserData) = viewModelScope.launch {
         userDao.insert(user)
-        isFav.value = true
+        _isFav.value = true
     }
 
     fun deleteUser(user: UserData) = viewModelScope.launch {
         userDao.delete(user)
-        isFav.value = false
+        _isFav.value = false
     }
 
 }

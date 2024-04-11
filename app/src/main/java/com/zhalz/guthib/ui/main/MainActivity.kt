@@ -2,7 +2,6 @@ package com.zhalz.guthib.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +15,7 @@ import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.ActivityMainBinding
 import com.zhalz.guthib.ui.setting.SettingActivity
 import com.zhalz.guthib.ui.detail.DetailActivity
+import com.zhalz.guthib.ui.favorite.FavoriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         /** === TOOLBAR === **/
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.menu_favorite -> Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show()
+                R.id.menu_favorite -> toFavorites()
                 R.id.menu_setting -> toSetting()
             }
             true
@@ -83,9 +83,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun toFavorites() {
+        val toFavorite = Intent(this, FavoriteActivity::class.java)
+        startActivity(toFavorite)
+    }
+
     private fun toSetting() {
-        val toDetail = Intent(this, SettingActivity::class.java)
-        startActivity(toDetail)
+        val toSetting = Intent(this, SettingActivity::class.java)
+        startActivity(toSetting)
     }
 
     private fun toDetail(data: UserData) {

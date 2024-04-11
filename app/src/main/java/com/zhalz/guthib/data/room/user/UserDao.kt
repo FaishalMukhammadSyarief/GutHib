@@ -9,11 +9,14 @@ import androidx.room.Query
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: UserData)
+    suspend fun insert(username: UserData)
 
     @Delete
     suspend fun delete(user: UserData)
 
     @Query("SELECT count(*) FROM UserData WHERE id = :id")
     suspend fun checkFav(id: Int) : Int
+
+    @Query("SELECT * FROM UserData")
+    suspend fun getFav(): List<UserData>
 }

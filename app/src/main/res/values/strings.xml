@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">GutHib</string>
-    <string name="hint_search">Search</string>
-    <string name="search">Search</string>
 
     <string name="tab_layout">Tab Layout</string>
     <string name="followers">FOLLOWERS</string>
@@ -9,7 +7,6 @@
     <string name="my_name">Faishal Mukhammad Syarief</string>
     <string name="favorite">Favorite</string>
     <string name="setting">Setting</string>
-    <string name="txt_start">Start Searching Your Account</string>
     <string name="txt_not_found">User not Found</string>
     <string name="home_message">Search your Guthib account.</string>
     <string name="dark_mode">Dark Mode</string>

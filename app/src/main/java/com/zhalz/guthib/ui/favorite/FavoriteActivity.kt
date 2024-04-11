@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.zhalz.guthib.R
 import com.zhalz.guthib.adapter.UserAdapter
 import com.zhalz.guthib.data.room.user.UserData
@@ -15,6 +16,7 @@ import com.zhalz.guthib.databinding.ActivityFavoriteBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
 import com.zhalz.guthib.utils.Const
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity() {
@@ -31,8 +33,14 @@ class FavoriteActivity : AppCompatActivity() {
         binding.adapter = adapter
 
         initUI()
-        viewModel.listFav.observe(this) { adapter.submitList(it) }
+        getListFav()
 
+    }
+
+    private fun getListFav() = lifecycleScope.launch {
+        viewModel.getListFav().collect {
+            adapter.submitList(it)
+        }
     }
 
     private fun initUI() {
@@ -54,6 +62,6 @@ class FavoriteActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getFavorite()
+        viewModel.getListFav()
     }
 }

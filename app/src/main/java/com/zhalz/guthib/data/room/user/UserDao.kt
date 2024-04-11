@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -18,5 +19,5 @@ interface UserDao {
     suspend fun checkFav(id: Int) : Int
 
     @Query("SELECT * FROM UserData")
-    suspend fun getFav(): List<UserData>
+    fun getListFav(): Flow<List<UserData>>
 }

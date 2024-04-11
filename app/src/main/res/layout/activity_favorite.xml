@@ -38,6 +38,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_favorite"
             style="@style/RecyclerView"
             android:adapter="@{adapter}"
             android:padding="5dp"

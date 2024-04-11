@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="activity"
+            type="com.zhalz.guthib.ui.detail.DetailActivity" />
+
+        <variable
             name="detailUser"
             type="com.zhalz.guthib.data.response.DetailUser" />
 
@@ -156,6 +160,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_share"
             app:tint="@color/white"
+            android:onClick="@{() -> activity.shareUser()}"
             android:backgroundTint="@color/black"
             android:layout_gravity="bottom|end"
             android:contentDescription="@string/share"

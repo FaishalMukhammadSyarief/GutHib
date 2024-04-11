@@ -31,13 +31,10 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.activity = this
 
         initUI()
         getDetailUser()
-
-        binding.fabShare.setOnClickListener {
-            shareUser()
-        }
 
     }
 
@@ -104,7 +101,7 @@ class DetailActivity : AppCompatActivity() {
         checkFav()
     }
 
-    private fun shareUser() {
+    fun shareUser() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, userData?.url)

@@ -1,5 +1,6 @@
 package com.zhalz.guthib.ui.detail
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,6 +34,10 @@ class DetailActivity : AppCompatActivity() {
 
         initUI()
         getDetailUser()
+
+        binding.fabShare.setOnClickListener {
+            shareUser()
+        }
 
     }
 
@@ -97,6 +102,14 @@ class DetailActivity : AppCompatActivity() {
         if (isFav) userData?.let { viewModel.deleteUser(it) }
         else userData?.let { viewModel.insertUser(it) }
         checkFav()
+    }
+
+    private fun shareUser() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, userData?.url)
+        }
+        startActivity(Intent.createChooser(shareIntent, "Share via"))
     }
 
 }

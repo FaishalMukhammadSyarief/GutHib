@@ -20,4 +20,7 @@ data class UserData(
     @field:SerializedName("avatar_url")
     val avatarUrl: String? = null,
 
+    @field:SerializedName("url")
+    val url: String? = null,
+
 ) : Parcelable

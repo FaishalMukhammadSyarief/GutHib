@@ -13,4 +13,5 @@
 
     <string name="followers_title">FOLLOWERS  (%d)</string>
     <string name="following_title">FOLLOWING  (%d)</string>
+    <string name="share">Share</string>
 </resources>

@@ -3,13 +3,16 @@ package com.zhalz.guthib.ui.followers
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.zhalz.guthib.data.retrofit.ApiService
 import com.zhalz.guthib.data.room.user.UserData
-import com.zhalz.guthib.data.retrofit.ApiConfig
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class FollowersViewModel: ViewModel() {
+@HiltViewModel
+class FollowersViewModel @Inject constructor(private val apiService: ApiService): ViewModel() {
 
     private val _listFollowers = MutableLiveData<List<UserData?>?>()
     val  listFollowers = _listFollowers
@@ -24,7 +27,7 @@ class FollowersViewModel: ViewModel() {
         isError.value = false
         isEmpty.value = false
 
-        val client = ApiConfig.getApiService().getFollowers(username)
+        val client = apiService.getFollowers(username)
         client.enqueue(object: Callback<List<UserData>> {
 
             override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {

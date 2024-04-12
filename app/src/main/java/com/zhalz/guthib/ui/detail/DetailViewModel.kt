@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zhalz.guthib.data.response.DetailUser
-import com.zhalz.guthib.data.retrofit.ApiConfig
+import com.zhalz.guthib.data.retrofit.response.DetailUser
+import com.zhalz.guthib.data.retrofit.ApiService
 import com.zhalz.guthib.data.room.user.UserDao
 import com.zhalz.guthib.data.room.user.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewModel() {
+class DetailViewModel @Inject constructor(private val apiService: ApiService, private val userDao: UserDao): ViewModel() {
 
     private val _isFav = MutableLiveData<Boolean>()
     val isFav : LiveData<Boolean> = _isFav
@@ -29,7 +29,7 @@ class DetailViewModel @Inject constructor(private val userDao: UserDao): ViewMod
 
         isLoading.value = true
 
-        val client = ApiConfig.getApiService().getDetail(username)
+        val client = apiService.getDetail(username)
         client.enqueue(object : Callback<DetailUser> {
 
             override fun onResponse(call: Call<DetailUser>, response: Response<DetailUser>) {

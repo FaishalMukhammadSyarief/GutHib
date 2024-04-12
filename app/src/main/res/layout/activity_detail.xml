@@ -11,7 +11,7 @@
 
         <variable
             name="detailUser"
-            type="com.zhalz.guthib.data.response.DetailUser" />
+            type="com.zhalz.guthib.data.retrofit.response.DetailUser" />
 
         <variable
             name="isLoading"

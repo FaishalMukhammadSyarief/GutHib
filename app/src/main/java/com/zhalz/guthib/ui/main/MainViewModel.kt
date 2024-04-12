@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.zhalz.guthib.data.datastore.DataStoreSetting
 import com.zhalz.guthib.data.room.user.UserData
-import com.zhalz.guthib.data.response.UserResponse
-import com.zhalz.guthib.data.retrofit.ApiConfig
+import com.zhalz.guthib.data.retrofit.response.UserResponse
+import com.zhalz.guthib.data.retrofit.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
@@ -16,7 +16,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataStore: DataStoreSetting) : ViewModel() {
+class MainViewModel @Inject constructor(private val apiService: ApiService, private val dataStore: DataStoreSetting) : ViewModel() {
 
     private val _listUser = MutableLiveData<List<UserData?>?>()
     val listUser = _listUser
@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(private val dataStore: DataStoreSetting)
         isError.value = false
         isEmpty.value = false
 
-        val client = ApiConfig.getApiService().searchUser(query)
+        val client = apiService.searchUser(query)
         client.enqueue(object : Callback<UserResponse> {
 
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {

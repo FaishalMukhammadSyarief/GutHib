@@ -1,7 +1,7 @@
 package com.zhalz.guthib.data.retrofit
 
-import com.zhalz.guthib.data.response.DetailUser
-import com.zhalz.guthib.data.response.UserResponse
+import com.zhalz.guthib.data.retrofit.response.DetailUser
+import com.zhalz.guthib.data.retrofit.response.UserResponse
 import retrofit2.Call
 import com.zhalz.guthib.data.room.user.UserData
 import retrofit2.http.GET

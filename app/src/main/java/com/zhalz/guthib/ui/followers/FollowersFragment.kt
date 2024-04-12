@@ -15,7 +15,9 @@ import com.zhalz.guthib.utils.Const.Parcel.EXTRA_USER
 import com.zhalz.guthib.data.room.user.UserData
 import com.zhalz.guthib.databinding.FragmentFollowersBinding
 import com.zhalz.guthib.ui.detail.DetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FollowersFragment : Fragment() {
 
     private var _binding: FragmentFollowersBinding? = null

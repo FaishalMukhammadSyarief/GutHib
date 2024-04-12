@@ -1,4 +1,4 @@
-package com.zhalz.guthib.data.response
+package com.zhalz.guthib.data.retrofit.response
 
 import com.google.gson.annotations.SerializedName
 import com.zhalz.guthib.data.room.user.UserData

@@ -4,12 +4,15 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zhalz.guthib.data.room.user.UserData
-import com.zhalz.guthib.data.retrofit.ApiConfig
+import com.zhalz.guthib.data.retrofit.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class FollowingViewModel: ViewModel() {
+@HiltViewModel
+class FollowingViewModel @Inject constructor(private val apiService: ApiService): ViewModel() {
 
     private val _listFollowing = MutableLiveData<List<UserData?>?>()
     val listFollowing = _listFollowing
@@ -23,7 +26,7 @@ class FollowingViewModel: ViewModel() {
         isError.value = false
         isEmpty.value = false
 
-        val client = ApiConfig.getApiService().getFollowing(username)
+        val client = apiService.getFollowing(username)
         client.enqueue(object: Callback<List<UserData>> {
 
             override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {

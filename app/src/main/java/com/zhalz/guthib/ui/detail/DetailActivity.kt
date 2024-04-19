@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
@@ -58,8 +59,9 @@ class DetailActivity : AppCompatActivity() {
             true
         }
 
-        /** == LOADING == **/
+        /** == MESSAGE == **/
         viewModel.isLoading.observe(this) { binding.isLoading = it }
+        viewModel.errorMsg.observe(this) { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }
 
     }
 

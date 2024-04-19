@@ -24,6 +24,7 @@ class DetailViewModel @Inject constructor(private val apiService: ApiService, pr
 
     val detailUser = MutableLiveData<DetailUser>()
     val isLoading = MutableLiveData<Boolean>()
+    val errorMsg = MutableLiveData<String>()
 
     fun getDetailUser(username: String) {
 
@@ -42,6 +43,7 @@ class DetailViewModel @Inject constructor(private val apiService: ApiService, pr
             override fun onFailure(call: Call<DetailUser>, t: Throwable) {
                 Log.e("DetailViewModel", "onFailure: ${t.message.toString()}")
                 isLoading.value = false
+                errorMsg.value = t.message.toString()
             }
         })
 

@@ -1,6 +1,5 @@
 package com.zhalz.guthib.ui.following
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zhalz.guthib.data.room.user.UserData
@@ -37,14 +36,12 @@ class FollowingViewModel @Inject constructor(private val apiService: ApiService)
                     if (totalCount == 0) isEmpty.value = true
                 }
                 else {
-                    Log.e("FollowingViewModel", "onFailure: ${response.message()}")
                     isLoading.value = false
                     isError.value = true
                 }
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-                Log.e("FollowingViewModel", "onFailure: ${t.message.toString()}")
                 isLoading.value = false
                 isError.value = true
             }

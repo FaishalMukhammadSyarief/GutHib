@@ -1,6 +1,5 @@
 package com.zhalz.guthib.ui.followers
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zhalz.guthib.data.retrofit.ApiService
@@ -38,14 +37,12 @@ class FollowersViewModel @Inject constructor(private val apiService: ApiService)
                     if (totalCount == 0) isEmpty.value = true
                 }
                 else {
-                    Log.e("FollowersViewModel", "onFailure: ${response.message()}")
                     isLoading.value = false
                     isError.value = true
                 }
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-                Log.e("FollowersViewModel", "onFailure: ${t.message.toString()}")
                 isLoading.value = false
                 isError.value = true
             }

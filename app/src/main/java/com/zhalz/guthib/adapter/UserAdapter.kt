@@ -22,7 +22,7 @@ class UserAdapter(val onItemClick : (UserData) -> Unit) : ListAdapter<UserData, 
         holder.binding.executePendingBindings()
     }
 
-    inner class UserViewHolder(var binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserData>() {

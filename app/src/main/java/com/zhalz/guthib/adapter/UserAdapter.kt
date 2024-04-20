@@ -17,8 +17,8 @@ class UserAdapter(val onItemClick : (UserData) -> Unit) : ListAdapter<UserData, 
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.itemView.setOnClickListener { onItemClick(getItem(position)) }
         holder.binding.userData = getItem(position)
+        holder.itemView.setOnClickListener { onItemClick(getItem(position)) }
         holder.binding.executePendingBindings()
     }
 

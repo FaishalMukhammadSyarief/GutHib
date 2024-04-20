@@ -30,7 +30,6 @@ class FavoriteActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_favorite)
 
-        binding.adapter = adapter
 
         initUI()
         getListFav()
@@ -40,6 +39,7 @@ class FavoriteActivity : AppCompatActivity() {
     private fun getListFav() = lifecycleScope.launch {
         viewModel.getListFav().collect {
             adapter.submitList(it)
+            binding.adapter = adapter
         }
     }
 
